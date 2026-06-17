@@ -1,0 +1,17 @@
+replicaCount: 1
+
+# Configuración de la imagen del contenedor
+image:
+  repository: juaandaaniel/mi-api-python
+  pullPolicy: IfNotPresent
+  tag: "v1.0.0"
+
+# Variables de entorno para la aplicación
+env:
+  appEnv: "Desarrollo"
+
+# Configuración del servicio de Kubernetes
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000

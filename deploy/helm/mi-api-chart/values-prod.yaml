@@ -1,0 +1,9 @@
+replicaCount: 3
+
+# Variable de entorno cambia a Producción
+env:
+  appEnv: "Producción"
+
+# En producción podríamos querer exponerlo vía LoadBalancer
+service:
+  type: LoadBalancer

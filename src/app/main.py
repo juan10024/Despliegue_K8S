@@ -3,7 +3,7 @@ import os
 import socket
 
 app = FastAPI(
-    title="Microservicio de Maestría",
+    title="Microservicio de Maestría en Arquitectura de Software - UNISABANA",
     version="1.0.0",
     description="API básica en Python para despliegue en Kubernetes con Helm y ArgoCD"
 )
@@ -23,5 +23,5 @@ def read_root():
 
 @app.get("/healthz", status_code=200)
 def health_check():
-    """Endpoint vital para los Probes de Kubernetes"""
+    """Endpoint de salud para los Probes de Kubernetes"""
     return {"status": "healthy", "version": VERSION}
