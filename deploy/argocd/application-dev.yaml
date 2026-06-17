@@ -23,4 +23,5 @@ spec:
     automated:                # Automatización solicitada por la guía
       prune: true             # Elimina recursos en K8s si los borras en Git
       selfHeal: true          # Corrige cambios manuales hechos en el clúster
-    createNamespace: true     # Crea el namespace 'desarrollo' si no existe
+    syncOptions:
+      - CreateNamespace=true

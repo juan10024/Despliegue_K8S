@@ -22,4 +22,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    createNamespace: true                     # Crea el namespace 'produccion' de forma automática
+    syncOptions:
+      - CreateNamespace=true
