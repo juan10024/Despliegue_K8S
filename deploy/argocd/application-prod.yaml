@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mi-api-fastapi-prod
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/TU_USUARIO_GITHUB/REPO_DE_TU_MAESTRIA.git'
+    targetRevision: HEAD
+    path: deploy/helm/mi-api-chart
+    helm:
+      valueFiles:
+        - values.yaml                         # Primero lee la base
+        - values-prod.yaml                    # Sobreescribe con los valores de producción
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: produccion                     # Se despliega en un entorno aislado de producción
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    createNamespace: true                     # Crea el namespace 'produccion' de forma automática

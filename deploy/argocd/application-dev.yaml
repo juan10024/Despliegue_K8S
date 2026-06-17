@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mi-api-fastapi-dev
+  namespace: argocd
+  # Permite que ArgoCD elimine recursos huérfanos si se borra la app
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    # Repositorio Git como fuente de verdad
+    repoURL: 'https://github.com/juan10024/Despliegue_K8S.git'
+    targetRevision: HEAD                        # Apunta a la última versión de la rama principal
+    path: deploy/helm/mi-api-chart              # Ruta donde vive el Chart
+    helm:
+      valueFiles:
+        - values.yaml                           # Carga los valores por defecto de desarrollo
+  destination:
+    server: 'https://kubernetes.default.svc'    # Despliega en el mismo clúster donde corre ArgoCD
+    namespace: desarrollo     # Namespace de destino para los pods de la API
+  syncPolicy:
+    automated:                # Automatización solicitada por la guía
+      prune: true             # Elimina recursos en K8s si los borras en Git
+      selfHeal: true          # Corrige cambios manuales hechos en el clúster
+    createNamespace: true     # Crea el namespace 'desarrollo' si no existe
