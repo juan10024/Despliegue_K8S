@@ -4,7 +4,7 @@ replicaCount: 1
 image:
   repository: juaandaaniel/mi-api-python
   pullPolicy: IfNotPresent
-  tag: "f40381a02c3cb8828a9b88352dccd41df02089ae"
+  tag: "7c5075e2af5f39eeb1981b8127a006a65b0ced2a"
 
 # Variables de entorno para la aplicación
 env:
